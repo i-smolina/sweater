@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Sweater</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div>
+		<form method="POST">
+			<input type="text" name="text" placeholder="Введите текст" />
+			<input type="text" name="tag" placeholder="Тэг" />
+			<button type="submit">Добавить</button>
+		</form>
+	</div>
+	<div>Список сообщений:</div>
+	<form method="POST" action="filter">
+		<input type="text" name="filter"/>
+		<button type="submit">Найти</button>
+	</form>
+	<div th:each="message: ${messages}">
+		<b th:text="${message.id}" />
+		<span th:text="${message.text}" />
+		<i th:text="${message.tag}" />
+	</div>
+</body>
+
+</html>
