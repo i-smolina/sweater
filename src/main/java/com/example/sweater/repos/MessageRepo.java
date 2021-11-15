@@ -1,4 +1,4 @@
-package com.example.sweater;
+package com.example.sweater.repos;
 
 import java.util.List;
 
