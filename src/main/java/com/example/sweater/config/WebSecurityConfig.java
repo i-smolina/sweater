@@ -15,11 +15,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.example.sweater.services.UserService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -38,6 +43,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userService)
+		.passwordEncoder(NoOpPasswordEncoder.getInstance());
+	}
+	
+	/*@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 			.dataSource(dataSource)
 			.passwordEncoder(NoOpPasswordEncoder.getInstance())
@@ -47,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					+ "from usr inner join user_role on usr.id=user_role.user_id "
 					+ "where usr.username=?");
 	}
-	
+	*/
 	
 	
 

@@ -13,7 +13,7 @@
 		</form>
 	</div>
 	<div>
-		<form method="POST">
+		<form th:action="@{/main}" method="POST">
 			<input type="text" name="text" placeholder="Введите текст" />
 			<input type="text" name="tag" placeholder="Тэг" />
 			<button type="submit">Добавить</button>
@@ -28,6 +28,7 @@
 		<b th:text="${message.id}" />
 		<span th:text="${message.text}" />
 		<i th:text="${message.tag}" />
+		<b th:text="${message.authorName}" />
 	</div>
 </body>
 
